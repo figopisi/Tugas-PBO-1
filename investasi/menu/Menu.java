@@ -10,6 +10,15 @@ public class Menu {
 
         accounts.add(new Admin("admin", "admin123"));
         accounts.add(new User("user1", "user123"));
+        accounts.add(new Admin("Admin Figo", "adminFigo22"));
+        accounts.add(new User("Admin Fajar", "Fajarganteng99"));
+
+
+        for (Login account : accounts) {
+            System.out.println("Username: " + account.getUsername());
+            System.out.println("Role: " + (account instanceof Admin ? "Admin" : "User"));
+            System.out.println("----------------------------");
+        }
 
         boolean running = true;
 
