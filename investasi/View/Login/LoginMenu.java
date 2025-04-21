@@ -1,9 +1,9 @@
-package menu;
+package View.Login;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Menu {
+public class LoginMenu {
     public static void menu() {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Login> accounts = new ArrayList<>();

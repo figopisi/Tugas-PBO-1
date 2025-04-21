@@ -1,4 +1,4 @@
-package menu;
+package View.Login;
 
 public abstract class Login {
     private String username;
