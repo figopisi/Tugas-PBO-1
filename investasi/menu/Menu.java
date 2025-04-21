@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
-    public static void main(String[] args) {
+    public static void menu() {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Login> accounts = new ArrayList<>();
 
@@ -26,45 +26,61 @@ public class Menu {
 
             switch (choice) {
                 case "1":
-                    System.out.print("Enter admin username: ");
-                    String adminUsername = scanner.nextLine();
-                    System.out.print("Enter admin password: ");
-                    String adminPassword = scanner.nextLine();
+                    boolean retryAdminLogin;
+                    do {
+                        System.out.print("Enter admin username: ");
+                        String adminUsername = scanner.nextLine();
+                        System.out.print("Enter admin password: ");
+                        String adminPassword = scanner.nextLine();
 
-                    boolean isAdminFound = false;
-                    for (Login account : accounts) {
-                        if (account instanceof Admin &&
-                                account.authenticate(adminUsername, adminPassword)) {
-                            account.showDashboard();
-                            isAdminFound = true;
-                            break;
+                        boolean isAdminFound = false;
+                        for (Login account : accounts) {
+                            if (account instanceof Admin &&
+                                    account.authenticate(adminUsername, adminPassword)) {
+                                account.showDashboard();
+                                isAdminFound = true;
+                                break;
+                            }
                         }
-                    }
 
-                    if (!isAdminFound) {
-                        System.out.println("Invalid admin credentials.");
-                    }
+                        if (!isAdminFound) {
+                            System.out.println("Invalid Admin credentials.");
+                            System.out.print("Do you want to try again? (yes/no): ");
+                            String retryChoice = scanner.nextLine().trim().toLowerCase();
+                            retryAdminLogin = retryChoice.equals("yes");
+                        } else {
+                            retryAdminLogin = false;
+                        }
+                    } while (retryAdminLogin);
                     break;
 
                 case "2":
-                    System.out.print("Enter user username: ");
-                    String userUsername = scanner.nextLine();
-                    System.out.print("Enter user password: ");
-                    String userPassword = scanner.nextLine();
+                    boolean retryUserLogin;
+                    do {
+                        System.out.print("Enter user username: ");
+                        String userUsername = scanner.nextLine();
+                        System.out.print("Enter user password: ");
+                        String userPassword = scanner.nextLine();
 
-                    boolean isUserFound = false;
-                    for (Login account : accounts) {
-                        if (account instanceof User &&
-                                account.authenticate(userUsername, userPassword)) {
-                            account.showDashboard();
-                            isUserFound = true;
-                            break;
+                        boolean isUserFound = false;
+                        for (Login account : accounts) {
+                            if (account instanceof User &&
+                                    account.authenticate(userUsername, userPassword)) {
+                                account.showDashboard();
+                                isUserFound = true;
+                                break;
+                            }
                         }
-                    }
 
-                    if (!isUserFound) {
-                        System.out.println("Invalid user credentials.");
-                    }
+                        if (!isUserFound) {
+                            System.out.println("Invalid user credentials.");
+                            System.out.print("Do you want to try again? (yes/no): ");
+                            String retryChoice = scanner.nextLine().trim().toLowerCase();
+                            retryUserLogin = retryChoice.equals("yes");
+                        } else {
+                            retryUserLogin = false;
+                        }
+                    } while (retryUserLogin);
                     break;
 
                 case "3":
@@ -76,7 +92,5 @@ public class Menu {
                     System.out.println("Invalid option. Please choose 1, 2, or 3.");
             }
         }
-
-        scanner.close();
     }
 }

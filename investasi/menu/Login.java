@@ -28,6 +28,18 @@ class Admin extends Login {
 
     @Override
     public void showDashboard() {
-        System.out.println("Welcome ADMIN " + getUsername() + "! You are now in the admin dashboard.");
+        System.out.println("Welcome " + getUsername() + "! You are now in the admin dashboard.");
     }
 }
+
+class User extends Login {
+    public User(String username, String password) {
+        super(username, password);
+    }
+
+    @Override
+    public void showDashboard() {
+        System.out.println("Welcome User " + getUsername() + "! You are now in the user dashboard.");
+    }
+}
+
