@@ -1,41 +1,58 @@
-package Model;
+package com.investasi.model;
 
 import java.util.Objects;
 
 public class Saham {
-    private String kode;
-    private String namaPerusahaan;
-    private double harga;
+    private String code;
+    private String companyName;
+    private double price;
 
-    public Saham(String kode, String namaPerusahaan, double harga) {
-        this.kode = kode;
-        this.namaPerusahaan = namaPerusahaan;
-        this.harga = harga;
+    public Saham(String code, String companyName, double price) {
+        this.code = code;
+        this.companyName = companyName;
+        this.price = price;
     }
 
-    public String getKode() {
-        return kode;
+    public String getCode() {
+        return code;
     }
 
-    public void setKode(String kode) {
-        this.kode = kode;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getNamaPerusahaan() {
-        return namaPerusahaan;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setNamaPerusahaan(String namaPerusahaan) {
-        this.namaPerusahaan = namaPerusahaan;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
-    public double getHarga() {
-        return harga;
+    public double getPrice() {
+        return price;
     }
 
-    public void setHarga(double harga) {
-        this.harga = harga;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Saham)) return false;
+        Saham saham = (Saham) o;
+        return Objects.equals(code, saham.code);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s - %s @ Rp%,.2f",
+                code, companyName, price);
+    }
 }
-
