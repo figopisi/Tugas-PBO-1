@@ -5,7 +5,7 @@ public class SuratBerhargaNegara {
     private double interestRate;
     private int duration; // in months
     private String maturityDate;
-    private int nationalQuota;
+    private long nationalQuota;
 
     public SuratBerhargaNegara(String name, double interestRate, int duration, String maturityDate, int nationalQuota) {
         this.name = name;
@@ -47,11 +47,11 @@ public class SuratBerhargaNegara {
         this.maturityDate = maturityDate;
     }
 
-    public int getNationalQuota() {
+    public long getNationalQuota() {
         return nationalQuota;
     }
 
-    public void setNationalQuota(int nationalQuota) {
+    public void setNationalQuota(long nationalQuota) {
         this.nationalQuota = nationalQuota;
     }
 
