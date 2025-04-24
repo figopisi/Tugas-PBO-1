@@ -1,7 +1,5 @@
 package Model;
 
-import View.Login.Login;
-
 public class Admin extends Login {
     public Admin(String username, String password) {
         super(username, password);

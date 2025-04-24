@@ -1,6 +1,7 @@
 package View.Login;
 
 import Model.Admin;
+import Model.Login;
 import Model.User;
 
 import java.util.ArrayList;

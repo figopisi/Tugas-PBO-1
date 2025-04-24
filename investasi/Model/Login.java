@@ -1,4 +1,4 @@
-package View.Login;
+package Model;
 
 public abstract class Login {
     private String username;
