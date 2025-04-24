@@ -1,5 +1,8 @@
 package View.Login;
 
+import Model.Admin;
+import Model.User;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,15 +11,15 @@ public class LoginMenu {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Login> accounts = new ArrayList<>();
 
-        accounts.add(new Admin("admin", "admin123"));
-        accounts.add(new User("user1", "user123"));
-        accounts.add(new Admin("Admin Figo", "adminFigo22"));
-        accounts.add(new User("Admin Fajar", "Fajarganteng99"));
+        accounts.add(new Model.Admin("admin", "admin123"));
+        accounts.add(new Model.User("user1", "user123"));
+        accounts.add(new Model.Admin("Admin Figo", "adminFigo22"));
+        accounts.add(new Model.User("Admin Fajar", "Fajarganteng99"));
 
 
         for (Login account : accounts) {
             System.out.println("Username: " + account.getUsername());
-            System.out.println("Role: " + (account instanceof Admin ? "Admin" : "User"));
+            System.out.println("Role: " + (account instanceof Model.Admin ? "Admin" : "User"));
             System.out.println("----------------------------");
         }
 
