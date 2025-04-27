@@ -2,7 +2,7 @@ package View.Login;
 
 import Model.Admin;
 import Model.Login;
-import Model.User;
+import Model.Customer;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,9 +13,9 @@ public class LoginMenu {
         ArrayList<Login> accounts = new ArrayList<>();
 
         accounts.add(new Model.Admin("admin", "admin123"));
-        accounts.add(new Model.User("user1", "user123"));
+        accounts.add(new Model.Customer("user1", "user123"));
         accounts.add(new Model.Admin("Admin Figo", "adminFigo22"));
-        accounts.add(new Model.User("Admin Fajar", "Fajarganteng99"));
+        accounts.add(new Model.Customer("Admin Fajar", "Fajarganteng99"));
 
 
         for (Login account : accounts) {
@@ -77,7 +77,7 @@ public class LoginMenu {
 
                         boolean isUserFound = false;
                         for (Login account : accounts) {
-                            if (account instanceof User &&
+                            if (account instanceof Customer &&
                                     account.authenticate(userUsername, userPassword)) {
                                 account.showDashboard();
                                 isUserFound = true;
