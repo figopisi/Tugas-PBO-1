@@ -4,13 +4,13 @@ import Service.SBN.addSBN;
 import Util.InputHelper;
 
 public class AdminSBN {
-    private addSBN sbnService;
+    private final addSBN sbnService;
 
     public AdminSBN() {
         sbnService = new addSBN();
     }
 
-    public void adminSBNMenu() {
+    public void menu() {
         int choice;
         do {
             System.out.println("\n============================================");
