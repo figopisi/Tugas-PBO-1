@@ -21,9 +21,9 @@ public class SBNsimulation {
 
         double investmentAmount = InputHelper.readDouble("Masukkan jumlah investasi: ");
         double interestRate = selectedSBN.getInterestRate();
-        int duration = selectedSBN.getDuration();
 
-        double investmentResult = investmentAmount + (investmentAmount * interestRate / 100 * duration / 12);
+        // Simulasi kupon per bulan (sesuai soal)
+        double monthlyCoupon = (interestRate / 100.0) / 12.0 * 0.9 * investmentAmount;
 
         System.out.println("\n============================");
         System.out.println("|        SIMULASI SBN       |");
@@ -31,8 +31,7 @@ public class SBNsimulation {
         System.out.println("SBN yang dipilih: " + selectedSBN.getName());
         System.out.println("Jumlah Investasi: Rp " + investmentAmount);
         System.out.println("Bunga: " + interestRate + "% per tahun");
-        System.out.println("Durasi: " + duration + " bulan");
-        System.out.println("Hasil Investasi setelah " + duration + " bulan: Rp " + investmentResult);
+        System.out.println("Kupon per bulan: Rp " + monthlyCoupon);
         System.out.println("============================");
     }
 }
