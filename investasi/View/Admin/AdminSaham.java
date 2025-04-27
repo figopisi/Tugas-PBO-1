@@ -1,6 +1,6 @@
 package View.Admin;
 
-import Service.SahamService;
+import Service.Saham.SahamService;
 import Util.InputHelper;
 
 public class AdminSaham {
