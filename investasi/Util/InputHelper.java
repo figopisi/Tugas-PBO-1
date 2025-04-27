@@ -1,56 +1,47 @@
-package Util;
+package util;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class InputHelper {
-    private static final Scanner SC = new Scanner(System.in);
+    private static final Scanner sc = new Scanner(System.in);
 
     public static String readString(String prompt) {
         System.out.print(prompt);
-        return SC.nextLine().trim();
+        return sc.nextLine().trim();
     }
 
     public static int readInt(String prompt, int min, int max) {
+        int value;
         while (true) {
-            System.out.print(prompt);
-            String line = SC.nextLine().trim();
             try {
-                int val = Integer.parseInt(line);
-                if (val < min || val > max) {
-                    System.out.printf("Masukkan angka antara %d dan %d.%n", min, max);
-                    continue;
-                }
-                return val;
+                value = Integer.parseInt(readString(prompt));
+                if (value >= min && value <= max) return value;
+                System.out.printf("Masukkan angka antara %d dan %d.%n", min, max);
             } catch (NumberFormatException e) {
-                System.out.println("Input bukan angka valid. Coba lagi.");
+                System.out.println("Input harus berupa angka.");
             }
         }
     }
 
     public static double readDouble(String prompt) {
         while (true) {
-            System.out.print(prompt);
-            String line = SC.nextLine().trim();
             try {
-                return Double.parseDouble(line);
+                return Double.parseDouble(readString(prompt));
             } catch (NumberFormatException e) {
-                System.out.println("Input bukan angka desimal valid. Coba lagi.");
+                System.out.println("Input harus berupa angka desimal.");
             }
         }
     }
 
     public static LocalDate readDate(String prompt) {
         while (true) {
-            System.out.print(prompt + " (YYYY-MM-DD): ");
-            String line = SC.nextLine().trim();
             try {
-                return LocalDate.parse(line);
+                return LocalDate.parse(readString(prompt + " (YYYY-MM-DD)"));
             } catch (DateTimeParseException e) {
                 System.out.println("Format tanggal salah. Gunakan YYYY-MM-DD.");
             }
         }
     }
 }
-
