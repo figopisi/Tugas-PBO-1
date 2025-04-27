@@ -2,6 +2,7 @@ package Service;
 
 import Model.Saham;
 import Repository.ProdukRepository;
+import util.InputHelper;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,24 +14,49 @@ public class SahamService {
         return repo.getAllSaham();
     }
 
-    public void addSaham(Saham s) {
-        repo.addSaham(s);
+    public void addSaham() {
+        System.out.println("\n============================================");
+        System.out.println("|            TAMBAH SAHAM BARU              |");
+        System.out.println("============================================");
+
+        String code = InputHelper.readString("Kode Saham: ");
+        String name = InputHelper.readString("Nama Saham: ");
+        double price = InputHelper.readDouble("Harga Saham: ");
+
+        Saham saham = new Saham(code, name, price);
+        repo.addSaham(saham);
+        System.out.println("Saham berhasil ditambahkan!");
     }
 
-    //Update stock price.
-    //@return true if the code is found and the price is updated; false otherwise.
+    public void updatePrice() {
+        System.out.println("\n============================================");
+        System.out.println("|            UBAH HARGA SAHAM               |");
+        System.out.println("============================================");
 
-    public boolean updatePrice(String code, double newPrice) {
+        String code = InputHelper.readString("Masukkan Kode Saham: ");
+        double newPrice = InputHelper.readDouble("Masukkan Harga Baru: ");
+
         Optional<Saham> opt = repo.findSahamByCode(code);
-        opt.ifPresent(s -> s.setPrice(newPrice));
-        return opt.isPresent();
+        if (opt.isPresent()) {
+            opt.get().setPrice(newPrice);
+            System.out.println("Harga saham berhasil diperbarui.");
+        } else {
+            System.out.println("Kode saham tidak ditemukan.");
+        }
     }
 
-    public boolean removeSaham(String code) {
-        return repo.removeSaham(code);
-    }
+    public void removeSaham() {
+        System.out.println("\n============================================");
+        System.out.println("|            HAPUS SAHAM                    |");
+        System.out.println("============================================");
 
-    public Optional<Saham> findByCode(String code) {
-        return repo.findSahamByCode(code);
+        String code = InputHelper.readString("Masukkan Kode Saham yang ingin dihapus: ");
+        boolean success = repo.removeSaham(code);
+
+        if (success) {
+            System.out.println("Saham berhasil dihapus.");
+        } else {
+            System.out.println("Kode saham tidak ditemukan.");
+        }
     }
 }
