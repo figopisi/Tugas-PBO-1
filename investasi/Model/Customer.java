@@ -1,7 +1,7 @@
 package Model;
 
-public class User extends Login {
-    public User(String username, String password) {
+public class Customer extends Login {
+    public Customer(String username, String password) {
         super(username, password);
     }
 
