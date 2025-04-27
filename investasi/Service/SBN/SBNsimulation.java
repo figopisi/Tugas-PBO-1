@@ -1,7 +1,7 @@
 package Service.SBN;
 
 import Model.SuratBerhargaNegara;
-import util.InputHelper;
+import Util.InputHelper;
 import java.util.List;
 
 public class SBNsimulation {

@@ -1,14 +1,14 @@
 package View.Admin;
 
 import Service.SBN.addSBN;
-import util.InputHelper;
+import Util.InputHelper;
 
 public class AdminSaham {
 
-    public class Adminsaham {
+    public class adminSaham {
         private addSBN sbnService;
 
-        public Adminsaham() {
+        public adminSaham() {
             sbnService = new addSBN();
         }
 

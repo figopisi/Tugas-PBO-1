@@ -1,7 +1,7 @@
 package View.Admin;
 
 import Service.SBN.addSBN;
-import util.InputHelper;
+import Util.InputHelper;
 
 public class AdminSBN {
     private addSBN sbnService;
