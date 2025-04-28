@@ -8,6 +8,7 @@ import Util.InputHelper;
 import java.util.Optional;
 
 public class TransactionSaham {
+
     private final PortofolioService portofolioService;
     private final ProdukRepository produkRepository;
     private static final int MAX_QUANTITY = Integer.MAX_VALUE;
@@ -26,7 +27,7 @@ public class TransactionSaham {
 
         if (optionalSaham.isPresent()) {
             int quantity = InputHelper.readInt("Masukkan jumlah saham yang ingin dibeli: ", 1, MAX_QUANTITY);
-            portofolioService.addSahamToPortfolio(optionalSaham.get(), quantity);
+            portofolioService.addStockToPortfolio(optionalSaham.get(), quantity); // Memanggil objek portofolioService
             System.out.println("Berhasil membeli saham.");
         } else {
             System.out.println("Kode saham tidak ditemukan.");
@@ -42,7 +43,7 @@ public class TransactionSaham {
 
         if (optionalSaham.isPresent()) {
             int quantity = InputHelper.readInt("Masukkan jumlah saham yang ingin dijual: ", 1, MAX_QUANTITY);
-            boolean success = portofolioService.removeSahamFromPortfolio(optionalSaham.get(), quantity);
+            boolean success = portofolioService.removeStockFromPortfolio(optionalSaham.get(), quantity);
 
             if (success) {
                 System.out.println("Berhasil menjual saham.");
