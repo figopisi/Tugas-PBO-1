@@ -1,61 +1,71 @@
 package Service;
 
-import Model.User;
-import Model.Portofolio;
 import Model.Saham;
 import Model.SuratBerhargaNegara;
+import Repository.ProdukRepository;
 
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Service for managing investment portfolios,
- * using the View.Login.User class as the User entity.
- */
+import java.util.*;
 
 public class PortofolioService {
-    private final Map<User, Portofolio> data = new HashMap<>();
-    private final SahamService sahamSvc = new SahamService();
-    private final SBNService sbnSvc   = new SBNService();
+    private ProdukRepository productRepository;
+    private Map<Saham, Integer> stockPortfolio;
+    private Map<SuratBerhargaNegara, Double> sbnPortfolio;
 
-    private Portofolio getOrCreate(User user) {
-        return data.computeIfAbsent(user, u -> new Portofolio());
+    public PortofolioService() {
+        this.productRepository = ProdukRepository.getInstance();
+        this.stockPortfolio = new HashMap<>();
+        this.sbnPortfolio = new HashMap<>();
     }
 
-    // --- Saham ---
-    public void buySaham(User user, String kode, int qty) {
-        Saham s = sahamSvc.findByCode(kode)
-                .orElseThrow(() -> new IllegalArgumentException("Saham Code is not found."));
-        getOrCreate(user).buySaham(s, qty);
+    public void addStockToPortfolio(Saham stock, int quantity) {
+        stockPortfolio.put(stock, stockPortfolio.getOrDefault(stock, 0) + quantity);
     }
 
-    public void sellSaham(User user, String kode, int qty) {
-        Saham s = sahamSvc.findByCode(kode)
-                .orElseThrow(() -> new IllegalArgumentException("Saham Code is not found."));
-        getOrCreate(user).sellSaham(s, qty);
-    }
-
-    // --- SBN ---
-    public void buySBN(User user, String nama, double nominal) {
-        SuratBerhargaNegara sbn = sbnSvc.findByName(nama)
-                .orElseThrow(() -> new IllegalArgumentException("SBN Name is not found."));
-        if (sbn.getNationalQuota() < (long) nominal) {
-            throw new IllegalArgumentException("Kuota nasional tidak mencukupi.");
+    public boolean removeStockFromPortfolio(Saham stock, int quantity) {
+        int currentAmount = stockPortfolio.getOrDefault(stock, 0);
+        if (currentAmount >= quantity) {
+            stockPortfolio.put(stock, currentAmount - quantity);
+            return true;
         }
-        getOrCreate(user).buySbn(sbn, nominal);
+        return false;
     }
 
-    /**
-     * Simulates the monthly coupon: (interest rate % / 100) / 12 * 0.9 * nominal value
-     */
-    public double simulateSBN(String nama, double nominal) {
-        SuratBerhargaNegara sbn = sbnSvc.findByName(nama)
-                .orElseThrow(() -> new IllegalArgumentException("SBN Name is not found."));
-        return (sbn.getInterestRate() / 100.0) / 12.0 * 0.9 * nominal;
+    public void addSBNToPortfolio(SuratBerhargaNegara sbn, double nominal) {
+        sbnPortfolio.put(sbn, sbnPortfolio.getOrDefault(sbn, 0.0) + nominal);
     }
 
-    // --- Portofolio View ---
-    public Portofolio getPortofolio(User user) {
-        return getOrCreate(user);
+    public void viewPortfolio() {
+        double totalStocks = 0.0;
+        double totalSBN = 0.0;
+        double totalInterestSBN = 0.0;
+
+        System.out.println("Saham yang dimiliki:");
+        for (Map.Entry<Saham, Integer> entry : stockPortfolio.entrySet()) {
+            Saham stock = entry.getKey();
+            int quantity = entry.getValue();
+            double stockPrice = stock.getPrice();
+            double totalStockPrice = quantity * stockPrice;
+            totalStocks += totalStockPrice;
+
+            System.out.printf("%s - %d lembar @ Rp%.2f (Total: Rp%.2f)\n",
+                    stock.getCompanyName(), quantity, stockPrice, totalStockPrice);
+        }
+
+        System.out.println("\nSBN yang dimiliki:");
+        for (Map.Entry<SuratBerhargaNegara, Double> entry : sbnPortfolio.entrySet()) {
+            SuratBerhargaNegara sbn = entry.getKey();
+            double nominal = entry.getValue();
+            double monthlyInterest = (sbn.getInterestRate() / 100.0) / 12.0 * 0.9 * nominal;
+            totalSBN += nominal;
+            totalInterestSBN += monthlyInterest;
+
+            System.out.printf("%s - Rp%.2f (Bunga Bulanan: Rp%.2f)\n", sbn.getName(), nominal, monthlyInterest);
+        }
+
+        System.out.println("\n==================================");
+        System.out.printf("Total Nilai Saham: Rp%.2f\n", totalStocks);
+        System.out.printf("Total Nilai SBN: Rp%.2f\n", totalSBN);
+        System.out.printf("Total Bunga SBN per bulan: Rp%.2f\n", totalInterestSBN);
+        System.out.println("==================================");
     }
 }
