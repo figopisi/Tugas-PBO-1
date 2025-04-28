@@ -36,7 +36,7 @@ Di CustomerMenu.showMenu(), setiap input dibaca sebagai teks. Jika kita memasukk
 
 “Pilihan tidak valid. Silakan pilih antara 1-6.”
 
-lalu mengulang menu. Begitu kita memasukkan nilai 1–6, program langsung menjalankan aksi sesuai pilihan (misalnya “1” → buySaham()).
+lalu mengulang menu. Begitu kita memasukkan nilai 1–6, program langsung menjalankan aksi sesuai pilihan (misalnya “1” -> buySaham()).
 
 ### 1 Tampilan Beli Saham
 ![Tampilan beli saham](investasi/ReadME/Sahampict/customer/berhasilbelisaham.png)
@@ -66,4 +66,4 @@ Apabila kode tidak ada di repositori, Optional.empty() diproses sehingga program
 ### 5 Tampilan Opsi Portofolio
 ![Tampilan sahamMenu](investasi/ReadME/portofolio.png)
 
-Saat kita memilih opsi 5, `CustomerMenu.showMenu()` memanggil `portfolioService.viewPortfolio()`, di mana program melakukan hal berikut secara otomatis: pertama ia menelusuri portofolio saham dengan mencetak setiap nama saham, jumlah lembar, harga per lembar, dan total nilai; kemudian menelusuri portofolio SBN dengan mencetak nama SBN, nominal yang dimiliki, serta perhitungan bunga bulanan; terakhir ia menjumlahkan dan menampilkan ringkasan — Total Nilai Saham, Total Nilai SBN, dan Total Bunga SBN per bulan — sehingga kita langsung melihat keseluruhan nilai investasi kita.
+Saat kita memilih opsi 5, `CustomerMenu.showMenu()` memanggil `portfolioService.viewPortfolio()`, di mana program melakukan hal berikut secara otomatis: pertama ia menelusuri portofolio saham dengan mencetak setiap nama saham, jumlah lembar, harga per lembar, dan total nilai; kemudian menelusuri portofolio SBN dengan mencetak nama SBN, nominal yang dimiliki, serta perhitungan bunga bulanan; terakhir ia menjumlahkan dan menampilkan ringkasan Total Nilai Saham, Total Nilai SBN, dan Total Bunga SBN per bulan sehingga kita langsung melihat keseluruhan nilai investasi kita.
