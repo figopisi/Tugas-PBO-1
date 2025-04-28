@@ -81,7 +81,7 @@ public class LoginMenu {
                 case "3":
                     running = false;
                     System.out.println("Thank you! Program exited.");
-                    break;
+                    return;
 
                 default:
                     System.out.println("Invalid option. Please choose 1, 2, or 3.");
