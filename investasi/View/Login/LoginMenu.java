@@ -26,7 +26,7 @@ public class LoginMenu {
             System.out.println("|         MAIN  MENU          |");
             System.out.println("|=============================|");
             System.out.println("| 1. Login as Admin           |");
-            System.out.println("| 2. Login as User            |");
+            System.out.println("| 2. Login as Customer        |");
             System.out.println("| 3. Exit                     |");
             System.out.println("===============================");
             String choice = InputHelper.readString("Choose an option [1-3]: ");
