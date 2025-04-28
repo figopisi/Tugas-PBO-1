@@ -30,11 +30,12 @@ public class AdminSaham {
                     sahamService.updatePrice();
                     break;
                 case 3:
-                    System.out.println("Kembali ke menu Admin.");
+                    AdminMenu adminMenu = new AdminMenu(sahamService, null); // Menambahkan parameter yang diperlukan
+                    adminMenu.show();
                     break;
                 default:
                     System.out.println("Pilihan tidak valid. Coba lagi.");
             }
-        } while (choice != 4);
+        } while (choice != 3);
     }
 }
