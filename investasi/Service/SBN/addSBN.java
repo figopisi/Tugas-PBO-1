@@ -7,7 +7,7 @@ import Util.InputHelper;
 import java.util.List;
 
 public class addSBN {
-    private ProdukRepository produkRepository;
+    private final ProdukRepository produkRepository;
 
     public addSBN() {
         this.produkRepository = ProdukRepository.getInstance();
