@@ -1,12 +1,15 @@
 package View.Admin;
 
+import Service.Saham.SahamService;
 import Service.SBN.addSBN;
 import Util.InputHelper;
 
 public class AdminSBN {
     private final addSBN sbnService;
+    private final SahamService sahamService;
 
-    public AdminSBN() {
+    public AdminSBN(SahamService sahamService) {
+        this.sahamService = sahamService;
         sbnService = new addSBN();
     }
 
@@ -14,7 +17,7 @@ public class AdminSBN {
         int choice;
         do {
             System.out.println("\n============================================");
-            System.out.println("|              SBN MENU                      |");
+            System.out.println("|              SBN MENU                     |");
             System.out.println("|===========================================|");
             System.out.println("| 1. Tambah SBN                             |");
             System.out.println("| 2. Kembali                                |");
@@ -26,7 +29,8 @@ public class AdminSBN {
                     sbnService.addSBN();
                     break;
                 case 2:
-                    System.out.println("Kembali ke menu Admin.");
+                    AdminMenu adminMenu = new AdminMenu(sahamService, sbnService); // Kirimkan sahamService dan sbnService yang dibutuhkan
+                    adminMenu.show();
                     break;
                 default:
                     System.out.println("Pilihan tidak valid. Coba lagi.");
