@@ -5,6 +5,7 @@ import Service.Saham.TransactionSaham;
 import Service.SBN.BuySBN;
 import Service.SBN.SBNsimulation;
 import Service.PortofolioService;
+import View.Login.LoginMenu;
 
 public class CustomerMenu {
     public static void showMenu() {
@@ -47,7 +48,7 @@ public class CustomerMenu {
                     portfolioService.viewPortfolio();
                     break;
                 case "6":
-                    System.out.println("Logout berhasil.");
+                    LoginMenu.menu();
                     running = false;
                     break;
                 default:

@@ -3,6 +3,7 @@ package View.Admin;
 import Service.Saham.SahamService;
 import Service.SBN.addSBN;
 import Util.InputHelper;
+import View.Login.LoginMenu;
 
 public class AdminMenu {
     private final SahamService sahamService;
@@ -33,7 +34,7 @@ public class AdminMenu {
                     new AdminSBN(sahamService).menu();
                     break;
                 case 3:
-                    System.out.println("Logout berhasil.\n");
+                    LoginMenu.menu();
                     break;
             }
         } while (choice != 3);
