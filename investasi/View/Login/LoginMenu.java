@@ -3,26 +3,21 @@ package View.Login;
 import Model.Admin;
 import Model.Login;
 import Model.Customer;
-
+import Util.InputHelper;
+import View.Admin.AdminMenu;
+import View.CustomerMenu;
+import Service.Saham.SahamService;
+import Service.SBN.addSBN;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class LoginMenu {
     public static void menu() {
-        Scanner scanner = new Scanner(System.in);
         ArrayList<Login> accounts = new ArrayList<>();
 
         accounts.add(new Model.Admin("admin", "admin123"));
         accounts.add(new Model.Customer("user1", "user123"));
         accounts.add(new Model.Admin("Admin Figo", "adminFigo22"));
         accounts.add(new Model.Customer("Admin Fajar", "Fajarganteng99"));
-
-
-        for (Login account : accounts) {
-            System.out.println("Username: " + account.getUsername());
-            System.out.println("Role: " + (account instanceof Model.Admin ? "Admin" : "User"));
-            System.out.println("----------------------------");
-        }
 
         boolean running = true;
 
@@ -34,23 +29,20 @@ public class LoginMenu {
             System.out.println("| 2. Login as User            |");
             System.out.println("| 3. Exit                     |");
             System.out.println("===============================");
-            System.out.print("Choose an option [1-3]: ");
-            String choice = scanner.nextLine();
+            String choice = InputHelper.readString("Choose an option [1-3]: ");
 
             switch (choice) {
                 case "1":
                     boolean retryAdminLogin;
                     do {
-                        System.out.print("Enter admin username: ");
-                        String adminUsername = scanner.nextLine();
-                        System.out.print("Enter admin password: ");
-                        String adminPassword = scanner.nextLine();
+                        String adminUsername = InputHelper.readString("Enter admin username: ");
+                        String adminPassword = InputHelper.readString("Enter admin password: ");
 
                         boolean isAdminFound = false;
                         for (Login account : accounts) {
                             if (account instanceof Admin &&
                                     account.authenticate(adminUsername, adminPassword)) {
-                                account.showDashboard();
+                                new AdminMenu(new SahamService(), new addSBN()).show();
                                 isAdminFound = true;
                                 break;
                             }
@@ -58,8 +50,7 @@ public class LoginMenu {
 
                         if (!isAdminFound) {
                             System.out.println("Invalid Admin credentials.");
-                            System.out.print("Do you want to try again? (yes/no): ");
-                            String retryChoice = scanner.nextLine().trim().toLowerCase();
+                            String retryChoice = InputHelper.readString("Do you want to try again? (yes/no): ").trim().toLowerCase();
                             retryAdminLogin = retryChoice.equals("yes");
                         } else {
                             retryAdminLogin = false;
@@ -70,16 +61,14 @@ public class LoginMenu {
                 case "2":
                     boolean retryUserLogin;
                     do {
-                        System.out.print("Enter user username: ");
-                        String userUsername = scanner.nextLine();
-                        System.out.print("Enter user password: ");
-                        String userPassword = scanner.nextLine();
+                        String userUsername = InputHelper.readString("Enter user username: ");
+                        String userPassword = InputHelper.readString("Enter user password: ");
 
                         boolean isUserFound = false;
                         for (Login account : accounts) {
                             if (account instanceof Customer &&
                                     account.authenticate(userUsername, userPassword)) {
-                                account.showDashboard();
+                                CustomerMenu.showMenu();
                                 isUserFound = true;
                                 break;
                             }
@@ -87,8 +76,7 @@ public class LoginMenu {
 
                         if (!isUserFound) {
                             System.out.println("Invalid user credentials.");
-                            System.out.print("Do you want to try again? (yes/no): ");
-                            String retryChoice = scanner.nextLine().trim().toLowerCase();
+                            String retryChoice = InputHelper.readString("Do you want to try again? (yes/no): ").trim().toLowerCase();
                             retryUserLogin = retryChoice.equals("yes");
                         } else {
                             retryUserLogin = false;
