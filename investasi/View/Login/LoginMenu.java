@@ -5,19 +5,19 @@ import Model.Login;
 import Model.Customer;
 import Util.InputHelper;
 import View.Admin.AdminMenu;
-import View.CustomerMenu;
 import Service.Saham.SahamService;
 import Service.SBN.addSBN;
+
 import java.util.ArrayList;
 
 public class LoginMenu {
     public static void menu() {
         ArrayList<Login> accounts = new ArrayList<>();
 
-        accounts.add(new Model.Admin("admin", "admin123"));
-        accounts.add(new Model.Customer("user1", "user123"));
-        accounts.add(new Model.Admin("Admin Figo", "adminFigo22"));
-        accounts.add(new Model.Customer("Admin Fajar", "Fajarganteng99"));
+        accounts.add(new Admin("admin", "admin123"));
+        accounts.add(new Customer("user1", "user123"));
+        accounts.add(new Admin("Admin Figo", "adminFigo22"));
+        accounts.add(new Customer("Admin Fajar", "Fajarganteng99"));
 
         boolean running = true;
 
@@ -33,55 +33,49 @@ public class LoginMenu {
 
             switch (choice) {
                 case "1":
-                    boolean retryAdminLogin;
+                    boolean retryAdmin;
                     do {
-                        String adminUsername = InputHelper.readString("Enter admin username: ");
-                        String adminPassword = InputHelper.readString("Enter admin password: ");
-
-                        boolean isAdminFound = false;
-                        for (Login account : accounts) {
-                            if (account instanceof Admin &&
-                                    account.authenticate(adminUsername, adminPassword)) {
+                        String u = InputHelper.readString("Enter admin username: ");
+                        String p = InputHelper.readString("Enter admin password: ");
+                        boolean found = false;
+                        for (Login acct : accounts) {
+                            if (acct instanceof Admin && acct.authenticate(u, p)) {
                                 new AdminMenu(new SahamService(), new addSBN()).show();
-                                isAdminFound = true;
+                                found = true;
                                 break;
                             }
                         }
-
-                        if (!isAdminFound) {
+                        if (!found) {
                             System.out.println("Invalid Admin credentials.");
-                            String retryChoice = InputHelper.readString("Do you want to try again? (yes/no): ").trim().toLowerCase();
-                            retryAdminLogin = retryChoice.equals("yes");
+                            retryAdmin = InputHelper.readString("Try again? (yes/no): ")
+                                    .trim().equalsIgnoreCase("yes");
                         } else {
-                            retryAdminLogin = false;
+                            retryAdmin = false;
                         }
-                    } while (retryAdminLogin);
+                    } while (retryAdmin);
                     break;
 
                 case "2":
-                    boolean retryUserLogin;
+                    boolean retryUser;
                     do {
-                        String userUsername = InputHelper.readString("Enter user username: ");
-                        String userPassword = InputHelper.readString("Enter user password: ");
-
-                        boolean isUserFound = false;
-                        for (Login account : accounts) {
-                            if (account instanceof Customer &&
-                                    account.authenticate(userUsername, userPassword)) {
-                                CustomerMenu.showMenu();
-                                isUserFound = true;
+                        String u = InputHelper.readString("Enter user username: ");
+                        String p = InputHelper.readString("Enter user password: ");
+                        boolean found = false;
+                        for (Login acct : accounts) {
+                            if (acct instanceof Customer && acct.authenticate(u, p)) {
+                                View.CustomerMenu.showMenu();
+                                found = true;
                                 break;
                             }
                         }
-
-                        if (!isUserFound) {
+                        if (!found) {
                             System.out.println("Invalid user credentials.");
-                            String retryChoice = InputHelper.readString("Do you want to try again? (yes/no): ").trim().toLowerCase();
-                            retryUserLogin = retryChoice.equals("yes");
+                            retryUser = InputHelper.readString("Try again? (yes/no): ")
+                                    .trim().equalsIgnoreCase("yes");
                         } else {
-                            retryUserLogin = false;
+                            retryUser = false;
                         }
-                    } while (retryUserLogin);
+                    } while (retryUser);
                     break;
 
                 case "3":

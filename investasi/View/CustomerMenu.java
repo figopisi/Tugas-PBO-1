@@ -1,15 +1,13 @@
 package View;
 
-import java.util.Scanner;
+import Util.InputHelper;
+import Service.PortofolioService;
 import Service.Saham.TransactionSaham;
 import Service.SBN.BuySBN;
 import Service.SBN.SBNsimulation;
-import Service.PortofolioService;
-import View.Login.LoginMenu;
 
 public class CustomerMenu {
     public static void showMenu() {
-        Scanner scanner = new Scanner(System.in);
         PortofolioService portfolioService = new PortofolioService();
         TransactionSaham transactionSaham = new TransactionSaham(portfolioService);
         BuySBN buySBN = new BuySBN(portfolioService);
@@ -28,8 +26,7 @@ public class CustomerMenu {
             System.out.println("| 5. Portofolio                              |");
             System.out.println("| 6. Logout                                  |");
             System.out.println("==============================================");
-            System.out.print("Pilih menu [1-6]: ");
-            String choice = scanner.nextLine();
+            String choice = InputHelper.readString("Pilih menu [1-6]: ");
 
             switch (choice) {
                 case "1":
@@ -48,7 +45,7 @@ public class CustomerMenu {
                     portfolioService.viewPortfolio();
                     break;
                 case "6":
-                    LoginMenu.menu();
+                    System.out.println("Logout berhasil.");
                     running = false;
                     break;
                 default:
