@@ -30,7 +30,7 @@ public class AdminMenu {
                     new AdminSaham(sahamService).menu();
                     break;
                 case 2:
-                    new AdminSBN().menu();
+                    new AdminSBN(sahamService).menu();
                     break;
                 case 3:
                     System.out.println("Logout berhasil.\n");
