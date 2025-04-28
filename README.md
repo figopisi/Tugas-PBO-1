@@ -6,7 +6,7 @@
 
 Di AdminMenu.show(), program menampilkan tiga opsi dan langsung membaca input dengan InputHelper.readInt("Pilih opsi [1-3]: ", 1, 3). Jika kita memasukkan angka di luar 1–3, helper otomatis menolak dan mencetak:
 
-### 1. Tampilan menu saham Admin
+### 1 Tampilan menu saham Admin
 ![Tampilan saham menu admin](investasi/ReadME/Sahampict/admin/SahamMenu.png)
 
 Pada Saham Menu, strukturnya serupa: tiga opsi dan validasi input dengan readInt("Pilih menu [1-3]: ", 1, 3). Pilihan “1” memanggil metode untuk menambah saham baru, “2” memanggil metode untuk memperbarui harga, dan “3” keluar kembali ke menu Admin.
@@ -38,12 +38,12 @@ Di CustomerMenu.showMenu(), setiap input dibaca sebagai teks. Jika kita memasukk
 
 lalu mengulang menu. Begitu kita memasukkan nilai 1–6, program langsung menjalankan aksi sesuai pilihan (misalnya “1” → buySaham()).
 
-### 1. Tampilan Beli Saham
+### 1 Tampilan Beli Saham
 ![Tampilan beli saham](investasi/ReadME/Sahampict/customer/berhasilbelisaham.png)
 
 Saat opsi “1” dipilih pada customer menu, TransactionSaham.buySaham() menampilkan judul “BELI SAHAM” lalu meminta kode melalui readString dan kuantitas melalui readInt. Jika kode valid (ditemukan di ProdukRepository), kuantitas akan ditambahkan ke portofolio (portofolioService.addStockToPortfolio(...)) dan muncul konfirmasi “Berhasil membeli saham.”
 
-### 1.1. jika kode tidak di temukan
+### 1.1 jika kode tidak di temukan
 ![Tampilan beli saham kode tidak ada](investasi/ReadME/Sahampict/customer/kodesahamtidakditemukan.png)
 
 Dalam skenario ini, findSahamByCode("smm") menghasilkan Optional.empty(), sehingga program langsung menampilkan “Kode saham tidak ditemukan.” tanpa meminta jumlah dan kembali ke menu Customer.
@@ -63,7 +63,7 @@ Jika portofolio hanya memiliki 1 lembar dan user ingin menjual 2, removeStockFro
 
 Apabila kode tidak ada di repositori, Optional.empty() diproses sehingga program langsung mencetak “Kode saham tidak ditemukan.” dan kembali ke menu Customer.
 
-### Tampilan Opsi Portofolio
+### 5 Tampilan Opsi Portofolio
 ![Tampilan sahamMenu](investasi/ReadME/portofolio.png)
 
 Saat kita memilih opsi 5, `CustomerMenu.showMenu()` memanggil `portfolioService.viewPortfolio()`, di mana program melakukan hal berikut secara otomatis: pertama ia menelusuri portofolio saham dengan mencetak setiap nama saham, jumlah lembar, harga per lembar, dan total nilai; kemudian menelusuri portofolio SBN dengan mencetak nama SBN, nominal yang dimiliki, serta perhitungan bunga bulanan; terakhir ia menjumlahkan dan menampilkan ringkasan — Total Nilai Saham, Total Nilai SBN, dan Total Bunga SBN per bulan — sehingga kita langsung melihat keseluruhan nilai investasi kita.
