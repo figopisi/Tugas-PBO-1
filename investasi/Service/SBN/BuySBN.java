@@ -25,8 +25,15 @@ public class BuySBN {
         Optional<SuratBerhargaNegara> optionalSBN = produkRepository.findSBNByName(code);
 
         if (optionalSBN.isPresent()) {
+            SuratBerhargaNegara sbn = optionalSBN.get();
             double nominal = InputHelper.readDouble("Masukkan nominal pembelian SBN: ");
-            portofolioService.addSBNToPortfolio(optionalSBN.get(), nominal);
+
+            if (nominal > sbn.getNationalQuota()) {
+                System.out.println("Nominal pembelian melebihi kuota nasional yang tersedia.");
+                return;
+            }
+
+            portofolioService.addSBNToPortfolio(sbn, nominal);
             System.out.println("Berhasil membeli SBN.");
         } else {
             System.out.println("Kode SBN tidak ditemukan.");
