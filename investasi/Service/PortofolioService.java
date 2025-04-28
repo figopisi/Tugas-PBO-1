@@ -7,9 +7,9 @@ import Repository.ProdukRepository;
 import java.util.*;
 
 public class PortofolioService {
-    private ProdukRepository productRepository;
-    private Map<Saham, Integer> stockPortfolio;
-    private Map<SuratBerhargaNegara, Double> sbnPortfolio;
+    private final ProdukRepository productRepository;
+    private final Map<Saham, Integer> stockPortfolio;
+    private final Map<SuratBerhargaNegara, Double> sbnPortfolio;
 
     public PortofolioService() {
         this.productRepository = ProdukRepository.getInstance();
