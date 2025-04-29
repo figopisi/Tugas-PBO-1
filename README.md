@@ -1,5 +1,14 @@
 # Screenshot Program
 
+## UML
+![UML Diagram](investasi/ReadME/UML.png)
+Diagram ini menunjukkan struktur kelas pada aplikasi. Terdapat beberapa kelas utama seperti `Admin`, `Customer`, `PortofolioService`, dan menu interaksi. Hubungan antar kelas mencerminkan prinsip OOP (Inheritance, Polymorphism, Encapsulation).
+
+## Menu Utama
+
+![Main Menu](investasi/ReadME/Main_Menu.png)
+Menu ini adalah tampilan awal aplikasi di mana pengguna dapat memilih antara login sebagai Admin atau Customer. Menu ini menjadi pusat navigasi untuk masuk ke fitur-fitur utama.
+
 ## Admin
 ### Tampilan menu admin
 ![Tampilan admin_menu](investasi/ReadME/admin_menu.png)
@@ -26,6 +35,18 @@ Jika findSahamByCode berhasil menemukan objek Saham, maka metode akan melakukan 
 
 Ketika memilih opsi “2”, SahamService.updatePrice() akan menampilkan header “UBAH HARGA SAHAM” dan meminta kode saham serta harga baru. Program mencari saham dengan repo.findSahamByCode(code). Jika tidak ada, ia langsung mencetak “Kode saham tidak ditemukan.” dan kembali ke menu Saham.
 
+
+### 2 Tampilan Menu SBN Admin
+
+![Add SBN](SBNpict/add_SBN.png)
+
+Fitur ini memungkinkan admin untuk menambahkan produk SBN baru, termasuk detail seperti nama, tenor, dan imbal hasil.
+
+### 2.1 Tambah SBN Admin
+
+![Add SBN](investasi/ReadME/SBNpict/admin/add_SBN.png)
+
+Fitur ini memungkinkan admin untuk menambahkan produk SBN baru, termasuk detail seperti nama, tenor, dan imbal hasil.
 
 
 ## Customer
@@ -62,6 +83,18 @@ Jika portofolio hanya memiliki 1 lembar dan user ingin menjual 2, removeStockFro
 ![Tampilan kode saham tidak ketemu saat ingin menjual](investasi/ReadME/Sahampict/customer/kodesahamtidakditemukan.png)
 
 Apabila kode tidak ada di repositori, Optional.empty() diproses sehingga program langsung mencetak “Kode saham tidak ditemukan.” dan kembali ke menu Customer.
+
+### 3 Beli SBN
+
+![Buy SBN](investasi/ReadME/SBNpict/customer/Buy_SBN.png)
+
+Customer dapat memilih jenis SBN yang ingin dibeli, menentukan nominal investasi, dan melakukan transaksi.
+
+### 4 Simulasi Investasi
+
+![Simulasi SBN](investasi/ReadME/SBNpict/customer/SBN_Simulation.png)
+
+Fitur simulasi memungkinkan customer untuk memperkirakan hasil investasi berdasarkan jumlah, bunga, dan waktu
 
 ### 5 Tampilan Opsi Portofolio
 ![Tampilan sahamMenu](investasi/ReadME/portofolio.png)
