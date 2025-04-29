@@ -1,7 +1,7 @@
 # Screenshot Program
 
 ## UML
-![UML Diagram](investasi/ReadME/UML.png)
+![UML Diagram](investasi/ReadME/Sahampict/UML.jpg)
 
 Diagram ini menunjukkan struktur kelas pada aplikasi. Terdapat beberapa kelas utama seperti `Admin`, `Customer`, `PortofolioService`, dan menu interaksi. Hubungan antar kelas mencerminkan prinsip OOP (Inheritance, Polymorphism, Encapsulation). 
 
