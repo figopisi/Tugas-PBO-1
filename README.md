@@ -40,7 +40,7 @@ Ketika memilih opsi “2”, SahamService.updatePrice() akan menampilkan header 
 
 ![Add SBN](investasi/ReadME/SBNpict/admin/SBN_Admin_Menu.png)
 
-Fitur ini memungkinkan admin untuk menambahkan produk SBN baru, termasuk detail seperti nama, tenor, dan imbal hasil.
+Fitur ini untuk menambahkan SBN.
 
 ### 2.1 Tambah SBN Admin
 
