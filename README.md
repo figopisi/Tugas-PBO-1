@@ -2,12 +2,14 @@
 
 ## UML
 ![UML Diagram](investasi/ReadME/UML.png)
-Diagram ini menunjukkan struktur kelas pada aplikasi. Terdapat beberapa kelas utama seperti `Admin`, `Customer`, `PortofolioService`, dan menu interaksi. Hubungan antar kelas mencerminkan prinsip OOP (Inheritance, Polymorphism, Encapsulation).
+
+Diagram ini menunjukkan struktur kelas pada aplikasi. Terdapat beberapa kelas utama seperti `Admin`, `Customer`, `PortofolioService`, dan menu interaksi. Hubungan antar kelas mencerminkan prinsip OOP (Inheritance, Polymorphism, Encapsulation). 
 
 ## Menu Utama
 
 ![Main Menu](investasi/ReadME/Main_Menu.png)
-Menu ini adalah tampilan awal aplikasi di mana pengguna dapat memilih antara login sebagai Admin atau Customer. Menu ini menjadi pusat navigasi untuk masuk ke fitur-fitur utama.
+
+Menu ini adalah tampilan awal aplikasi di mana pengguna dapat memilih antara login sebagai Admin atau Customer. Menu ini menjadi pusat navigasi untuk masuk ke fitur-fitur utama. file main adalah file yang runable sehingga bila ingin menjalankan program harus melalui file main.
 
 ## Admin
 ### Tampilan menu admin
